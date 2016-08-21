@@ -1,0 +1,16 @@
+{
+  "name": "root/router",
+  "description": "Framework Davis",
+  "authors": [
+    {
+      "name": "Luis Solórzano",
+      "email": "luisnic20@gmail.com"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "Davis\\": "app"
+    }
+  },
+  "require": {}
+}
