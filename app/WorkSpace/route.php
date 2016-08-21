@@ -7,18 +7,12 @@
  */
 $router = new Davis\Core\Thunder\Route\Router();
 
-$router->get('/', function () {
-	echo 'Welcome to Homepage';
-});
+$router->get('/', 'IndexController<>Index');
 
-$router->get('/post', function () {
-	echo 'que paso men';
-});
-$router->get('/post/:id', function ($id) {
-	echo 'que paso men'. $id;
-});
-$router->post('/post/:id', function ($id) {
-	echo 'que paso men'. $id;
-});
+/*$router->get('/', function () {
+	echo 'Welcome to Homepage';
+});*/
+
+$router->get('/davis/:id', 'IndexController<>Index_Value');
 
 $router->run();
