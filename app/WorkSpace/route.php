@@ -5,7 +5,8 @@
  * Date: 08-21-16
  * Time: 10:40 AM
  */
-$router = new Davis\Core\Thunder\Route\Router();
+use Davis\Core\Thunder\Route\Router;
+$router = new Router();
 
 $router->get('/', 'IndexController<>Index');
 
