@@ -12,5 +12,7 @@
       "Davis\\": "app"
     }
   },
-  "require": {}
+  "require": {
+    "twig/twig": "1.*"
+  }
 }
