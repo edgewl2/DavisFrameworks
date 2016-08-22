@@ -9,16 +9,23 @@
 namespace Davis\WorkSpace\Controller;
 
 
+use Davis\Core\Views\Views;
+
 class IndexController {
+
 	public function __construct() {
 	}
 
 	public function Index() {
-		echo 'estas en IndexController';
+		 Views::view('home.home');
 	}
 
-	public function Index_Value($id) {
-		echo $id;
+	public function Index_Value() {
+		Views::view('davis.form');
+	}
+
+	public function Index_Post($id) {
+		Views::view('davis.form');
 	}
 
 }
