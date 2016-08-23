@@ -10,30 +10,32 @@ namespace Davis\Core\Views;
 
 
 class Views {
-	private static $layouts = 'app/WorkSpace/Views/layouts/app.temp.php';
 	private static $root = 'app/WorkSpace/Views/';
-	private static $ext = '.temp.php';
+	private static $ext = '.html.twig';
 
-	public function __construct() {
+	public function __construct($root, $ext) {
+		self::$root = $root;
+		self::$ext = $ext;
 	}
 
-	public static function view($views) {
-			$GLOBALS['content'] = self::validar($views);
-			return include_once self::$layouts;
+	public static function view($views, $array = []) {
+			return self::validar($views, $array);
 	}
 
-	private function validar($views) {
-		$temp = '';
+	private function validar($views, $array = []) {
+		$loader = new \Twig_Loader_Filesystem(self::$root);
+	 	$Twig_Load = new \Twig_Environment($loader);
+		$twig = '';
 		if (!empty($views)) {
 			$file = str_replace('', '', $views);
 			if ($views) {
 			 	$folder_file = str_replace('.', '/', $views);
-				$temp = self::$root . $folder_file . self::$ext;
+				$twig =  $folder_file . self::$ext;
 			} else {
-				$temp = self::$root . $file . self::$ext;
+				$twig = $file . self::$ext;
 			}
 		}
-		return $temp;
+		return $Twig_Load->display($twig,$array);
 	}
 
 }

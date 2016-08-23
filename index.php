@@ -10,4 +10,3 @@ define('DS', DIRECTORY_SEPARATOR);
 
 require_once WWW_ROOT. DS .'vendor/autoload.php';
 require_once WWW_ROOT. DS .'app/WorkSpace/route.php';
-

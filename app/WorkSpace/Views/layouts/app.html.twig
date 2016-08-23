@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>DavisFramework</title>
+	<title>{% block title %}{% endblock %} - DavisFramework</title>
 	<link href="app/Sites/theme/bootstrap-v4/assets/css/bootstrap.min.css" rel="stylesheet" type="text/css">
 	<link href="app/Sites/theme/bootstrap-v4/assets/css/layouts.css" rel="stylesheet" type="text/css">
 	<link href="app/Sites/theme/bootstrap-v4/assets/css/css.css" rel="stylesheet" type="text/css">
@@ -10,8 +10,9 @@
 </head>
 <body>
 
-<div class="container-fluid" id="contain">
-	<?php include_once $GLOBALS['content'] ?>
+<div class="container">
+	{% block content %}
+	{% endblock %}
 </div>
 
 </body>
