@@ -1,0 +1,17 @@
+{% extends 'layouts/app.html.twig' %}
+
+{% block content %}
+    <div class="col-md-6">
+        hola desde el block content
+        <a href="#">{{ autor }}</a>
+    </div>
+    <div class="col-md-6">
+        hola desde el block content
+        <a href="#">{{ david }}</a>
+
+        {% for autor in a %}
+            <a href="#">{{ a }}</a>
+        {% endfor %}
+    </div>
+
+{% endblock %}

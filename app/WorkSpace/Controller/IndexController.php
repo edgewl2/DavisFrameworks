@@ -9,7 +9,9 @@
 namespace Davis\WorkSpace\Controller;
 
 
+use Davis\Core\Input\Input;
 use Davis\Core\Views\Views;
+use Davis\WorkSpace\Model\UserModel;
 
 class IndexController {
 
@@ -17,15 +19,25 @@ class IndexController {
 	}
 
 	public function Index() {
-		 Views::view('home.home');
+		Views::view('home.home');
 	}
 
 	public function Index_Value() {
-		Views::view('davis.form');
+		$autor = 'Luis Solorzano';
+		$david = 'David Paredes';
+		Views::view('twig', array('autor'=>$autor, 'david'=>$david));
 	}
 
-	public function Index_Post($id) {
-		Views::view('davis.form');
+	public function Index_GET() {
+		Views::view('form.post');
+	}
+
+	public function Index_Post() {
+		/*$form = Input::get('form');
+		$data = Input::get('data');
+		echo $form.' '.$data;*/
+		$data = new UserModel();
+		$data->where('test1', 'david')->where('test2', 'luis')->where('test3', 'yajaira')->get();
 	}
 
 }
