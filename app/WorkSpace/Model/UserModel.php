@@ -12,7 +12,7 @@ namespace Davis\WorkSpace\Model;
 use Davis\Core\Model\Model;
 
 class UserModel extends Model{
-	private $table = 'user';
+	private $table = 'users';
 
 	public function __construct() {
 		$this->setTable();
@@ -21,8 +21,6 @@ class UserModel extends Model{
 	public function setTable() {
 		Model::Table($this->table);
 	}
-
-
 
 
 }

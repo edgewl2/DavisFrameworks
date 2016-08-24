@@ -12,8 +12,7 @@ namespace Davis\Core\Model;
 use Davis\WorkSpace\Model\UserModel;
 
 class Model {
-	private $params = [];
-	private $params2 = [];
+	private $db_query = [];
 	private static $table;
 	private $Query;
 
@@ -25,34 +24,32 @@ class Model {
 	}
 
 	public function where($params, $params2) {
-		$this->params[] = $params;
-		$this->params2[] = $params2;
+		$this->db_query[] = ' AND '. $params .'=:' . $params2;
 		return $this;
 	}
 
 	public function orwhere($params, $params2) {
-		$this->params[] = $params;
-		$this->params2[] = $params2;
+		$this->db_query[] = ' OR '. $params .'=:' . $params2;
+		return $this;
+	}
+
+	public function delete($params) {
+		$this->db_query[] = ' like '. $params;
+		return $this;
+	}
+
+	public function like($params) {
+		$this->db_query[] = ' like '. $params;
 		return $this;
 	}
 
 	public function get() {
-		$query_method = [];
-		$params = implode(",", $this->params);
-		$params2 = implode(",", $this->params2);
-		$value = explode(',', $params);
-		foreach ($value as $val => $k) {
-			if (explode(',', $params2)) {
-				$value2 = explode(',', $params2);
-				$query_method[] = $k.'='. $value2[$val];
-			}
-		}
-		$pull_apart = explode(',', implode(",", $query_method));
-		$data = str_replace(',', ' AND ', implode(',', $pull_apart));
-		$where = 'WHERE '. $data;
+		$params = implode(",", $this->db_query);
+		$where = 'WHERE '. $params;
 		$query = 'SELECT * FROM ' . self::$table . ' ' . $where;
 		$this->Query = $query;
 		echo $this->Query;
 	}
+
 
 }

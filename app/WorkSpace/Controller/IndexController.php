@@ -11,6 +11,7 @@ namespace Davis\WorkSpace\Controller;
 
 use Davis\Core\Input\Input;
 use Davis\Core\Views\Views;
+use Davis\WorkSpace\Database\Database;
 use Davis\WorkSpace\Model\UserModel;
 
 class IndexController {
@@ -19,7 +20,9 @@ class IndexController {
 	}
 
 	public function Index() {
-		Views::view('home.home');
+		//Views::view('home.home');
+		$d = new Database();
+		echo $d;
 	}
 
 	public function Index_Value() {
@@ -37,7 +40,7 @@ class IndexController {
 		$data = Input::get('data');
 		echo $form.' '.$data;*/
 		$data = new UserModel();
-		$data->where('test1', 'david')->where('test2', 'luis')->where('test3', 'yajaira')->get();
+		$data->where('test1', 'david')->where('test2', 'luis')->where('test3', 'yajaira')->orwhere('test4','jose')->get();
 	}
 
 }
