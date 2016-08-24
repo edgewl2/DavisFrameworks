@@ -9,13 +9,16 @@
 namespace Davis\Core\Database;
 
 
-class BaseDatabase {
+class BaseDatabase extends \PDO{
 
-	public function __construct($type, $host, $namedb, $user, $pass) {
+	public function __construct() {
+	}
+
+	public static function DB($type,$host, $namedb, $user, $pass) {
 		try {
-			parent::__construct($type.':host='.$host. ';dbname='.$namedb, $user, $pass);
+			 new \PDO($type.":host=".$host.";dbname=".$namedb,$user,$pass);
 		} catch (\PDOException $e) {
-			echo 'It has emerged an error and can not connect to the database. Detail: ' . $e->getMessage();
+			echo 'Error in  the connection. Detail: ' . $e->getMessage();
 			exit;
 		}
 	}

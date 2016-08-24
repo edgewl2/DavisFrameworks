@@ -13,22 +13,12 @@ use Davis\Core\Database\BaseDatabase;
 
 class Database extends BaseDatabase{
 	private $type = 'mysql';
-	private $host = 'localhost';
+	private $host = 'davisf.dev';
 	private $dbname = 'davisframe';
 	private $user = 'root';
 	private $pass = 'root';
 
-
 	public function __construct() {
-		$this->DBArray();
+		Database::DB($this->type, $this->host, $this->dbname, $this->user, $this->pass);
 	}
-
-	private function DBArray() {
-
-		$db = new BaseDatabase($this->type, $this->host,$this->dbname, $this->user, $this->pass);
-		return $db;
-
-
-	}
-
 }

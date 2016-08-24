@@ -17,12 +17,11 @@ use Davis\WorkSpace\Model\UserModel;
 class IndexController {
 
 	public function __construct() {
+
 	}
 
 	public function Index() {
-		//Views::view('home.home');
-		$d = new Database();
-		echo $d;
+		Views::view('home.home');
 	}
 
 	public function Index_Value() {
