@@ -10,7 +10,7 @@ namespace Davis\Core\Interfaces\Model;
 
 Interface InterfaceModel {
 
-	public function union();
+	public function union($value_one);
 	public function join();
 	public function save();
 	public function update();
@@ -21,6 +21,6 @@ Interface InterfaceModel {
 	public function count();
 	public function get();
 	public function compare($value_one, $value_two, $value_three);
-	public function first();
+	public function check();
 
 }

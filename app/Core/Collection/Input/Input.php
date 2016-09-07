@@ -6,10 +6,10 @@
  * Time: 02:32 PM
  */
 
-namespace Davis\Core\Input;
+namespace Davis\Core\Collection\Input;
 
 
-use Davis\Core\Thunder\Route\RouterException;
+use Davis\Core\Http\Thunder\Route\RouterException;
 
 class Input {
 	private $name;

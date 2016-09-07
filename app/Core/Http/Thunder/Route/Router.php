@@ -6,7 +6,7 @@
  * Time: 08:23 AM
  */
 
-namespace Davis\Core\Thunder\Route;
+namespace Davis\Core\Http\Thunder\Route;
 
 
 class Router {

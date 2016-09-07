@@ -9,9 +9,8 @@
 namespace Davis\WorkSpace\Controller;
 
 
-use Davis\Core\Input\Input;
+use Davis\Core\Http\Session\Session;
 use Davis\Core\Views\Views;
-use Davis\WorkSpace\Database\Database;
 use Davis\WorkSpace\Model\UserModel;
 
 class IndexController {
@@ -21,14 +20,19 @@ class IndexController {
 	}
 
 	public function Index() {
+	  Session::set('user','Luis Solorzano');
 	/*	Views::view('home.home');*/
 		$user = new UserModel();
-		$data = $user->compare('name','=','luis')->compare('user','=','solorzano')->first();
+    $name = $user->where('name', 'luis')->get();
+    $data = $user->where('user', 'solorzano')->union($name)->get();
+    var_dump($data);
+		/*$data = $user->compare('name','=','luis')->compare('user','=','solorzano')->check();
 		if ($data == TRUE) {
-			echo 'es verdadero';
+			echo 'es verdadero<br><br>';
+      echo 'User: ' .Session::get('user');
 		} else {
 			echo 'es falso';
-		}
+		}*/
 		//$data = $user->where('name', 'luis')->orwhere('user', 'solorzano')->get();
 	/*	echo $data = $user->count();*/
 		/*foreach($data as $obj){

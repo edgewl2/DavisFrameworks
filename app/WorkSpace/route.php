@@ -5,7 +5,7 @@
  * Date: 08-21-16
  * Time: 10:40 AM
  */
-use Davis\Core\Thunder\Route\Router;
+use Davis\Core\Http\Thunder\Route\Router;
 $router = new Router();
 $router->get('/', 'IndexController<>Index');
 $router->get('/post', 'IndexController<>Index_GET');

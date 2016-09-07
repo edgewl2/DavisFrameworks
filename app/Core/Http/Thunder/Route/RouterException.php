@@ -6,10 +6,8 @@
  * Time: 09:03 AM
  */
 
-namespace Davis\Core\Thunder\Route;
+namespace Davis\Core\Http\Thunder\Route;
 
-
-use Davis\Core\Input\Input;
 
 class RouterException extends \Exception{
 	public function __construct($message, $code, \Exception $previous) {
@@ -18,9 +16,15 @@ class RouterException extends \Exception{
 
 	public static function Input($input) {
 			if (empty($input)) {
-			echo $val = 'Los campos estan vacios';
+			echo 'Los campos estan vacios';
 			}
-
 	}
+
+  public static function Session($session) {
+    if (empty($session)) {
+      echo 'La variable session no contiene valor';
+    }
+
+  }
 
 }
