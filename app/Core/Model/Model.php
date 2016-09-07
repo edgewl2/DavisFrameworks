@@ -86,15 +86,14 @@ class Model implements InterfaceModel {
     $params = implode(",", $this->db_query);
     $query_string = str_replace(",", " ", $params);
     $where = 'WHERE ' . $query_string;
-    return  $query = 'SELECT * FROM ' . self::$table . ' ' . $where;
-    /*if (empty($query_string)) {
+    if (empty($query_string)) {
       $sql = 'SELECT * FROM ' . self::$table;
       return $dbs->query($sql);
     }
     else {
       $query = 'SELECT * FROM ' . self::$table . ' ' . $where;
       return $dbs->query($query);
-    }*/
+    }
   }
 
   public function count() {
