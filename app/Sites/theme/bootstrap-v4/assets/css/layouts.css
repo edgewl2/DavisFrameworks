@@ -1,0 +1,8 @@
+
+.texto {
+  font-size: 5em;
+  text-align: center;
+  margin-top: 15%;
+  font-family: "Lato";
+  text-blink: 0.1px;
+}
