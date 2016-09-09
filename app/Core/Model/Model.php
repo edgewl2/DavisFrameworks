@@ -20,7 +20,7 @@ class Model implements InterfaceModel {
   public function __construct() {
   }
 
-  public function __call($name, $arg) {
+  /*public function __call($name, $arg) {
     switch ($name) {
       case "and":
         call_user_func_array([$this, 'where'], $arg);
@@ -40,7 +40,7 @@ class Model implements InterfaceModel {
         throw new \BadMethodCallException($message);
         break;
     }
-  }
+  }*/
 
   public static function Table($table) {
     return self::$table = $table;
@@ -109,7 +109,7 @@ class Model implements InterfaceModel {
     return $this;
   }
 
-  /*public function compare($value_one, $value_two, $value_three) {
+  public function compare($value_one, $value_two, $value_three) {
     if (empty($this->db_compare)) {
       $this->db_compare[] = ' ' . $value_one . $value_two . "'" . $value_three . "'";
     }
@@ -117,13 +117,7 @@ class Model implements InterfaceModel {
       $this->db_compare[] = ' AND ' . $value_one . $value_two . "'" . $value_three . "'";
     }
     return $this;
-  }*/
-
-  /*public  function _and($val1, $val2, $oper){
-    if(!empty($this->db_compare)){
-      $this->db_compare[] = ' AND '. $this->compare($val1, $oper, $val2);
-    }
-  }*/
+  }
 
   public function get() {
     $dbs = new Database();
@@ -136,8 +130,8 @@ class Model implements InterfaceModel {
     }
     else {
       $query = 'SELECT * FROM ' . self::$table . ' ' . $where;
-      echo $query;
-      //return $dbs->query($query);
+      //echo $query;
+      return $dbs->query($query);
     }
   }
 
