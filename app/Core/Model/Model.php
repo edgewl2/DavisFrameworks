@@ -20,6 +20,28 @@ class Model implements InterfaceModel {
   public function __construct() {
   }
 
+  public function __call($name, $arg) {
+    switch ($name) {
+      case "and":
+        call_user_func_array([$this, 'where'], $arg);
+        break;
+      case "or":
+        call_user_func_array([$this, 'orwhere'], $arg);
+        break;
+      case "like":
+        call_user_func_array([$this, 'like'], $arg);
+        break;
+      case "get":
+        call_user_func_array([$this, 'and'], $arg);
+        break;
+      default:
+        $class = get_called_class();
+        $message = "Call to undefined method $class::$name()";
+        throw new \BadMethodCallException($message);
+        break;
+    }
+  }
+
   public static function Table($table) {
     return self::$table = $table;
   }
@@ -51,7 +73,7 @@ class Model implements InterfaceModel {
     // TODO: Implement update() method.
   }
 
-  public function where($value_one, $value_two) {
+  /*public function where($value_one, $value_two) {
     if (empty($this->db_query)) {
       $this->db_query[] = ' ' . $value_one . '=' . "'" . $value_two . "'";
     }
@@ -59,19 +81,35 @@ class Model implements InterfaceModel {
       $this->db_query[] = ' AND ' . $value_one . '=' . "'" . $value_two . "'";
     }
     return $this;
-  }
+  }*/
 
-  public function orwhere($value_one, $value_two) {
+  public function where($value_one, $value_two, $value_three = '=') {
     if (empty($this->db_query)) {
-      $this->db_query[] = ' ' . $value_one . '=' . "'" . $value_two . "'";
+      $this->db_query[] = ' ' . $value_one . $value_three . "'" . $value_two . "'";
     }
     else {
-      $this->db_query[] = ' OR ' . $value_one . '=' . "'" . $value_two . "'";
+      $this->_and($value_one, $value_two, $value_three);
     }
     return $this;
   }
 
-  public function compare($value_one, $value_two, $value_three) {
+  private function _and($value_one, $value_two, $value_three) {
+    if(!empty($this->db_query)) {
+      $this->db_query[] = ' AND ' . $value_one . $value_three . "'" . $value_two . "'";
+    }
+  }
+
+  public function orwhere($value_one, $value_two, $value_three = '=') {
+    if (!empty($this->db_query)) {
+      $this->db_query[] = ' OR ' . $value_one . $value_three . "'" . $value_two . "'";
+    }
+    else {
+      $this->where($value_one, $value_two, $value_three);
+    }
+    return $this;
+  }
+
+  /*public function compare($value_one, $value_two, $value_three) {
     if (empty($this->db_compare)) {
       $this->db_compare[] = ' ' . $value_one . $value_two . "'" . $value_three . "'";
     }
@@ -79,7 +117,13 @@ class Model implements InterfaceModel {
       $this->db_compare[] = ' AND ' . $value_one . $value_two . "'" . $value_three . "'";
     }
     return $this;
-  }
+  }*/
+
+  /*public  function _and($val1, $val2, $oper){
+    if(!empty($this->db_compare)){
+      $this->db_compare[] = ' AND '. $this->compare($val1, $oper, $val2);
+    }
+  }*/
 
   public function get() {
     $dbs = new Database();
@@ -92,7 +136,8 @@ class Model implements InterfaceModel {
     }
     else {
       $query = 'SELECT * FROM ' . self::$table . ' ' . $where;
-      return $dbs->query($query);
+      echo $query;
+      //return $dbs->query($query);
     }
   }
 
