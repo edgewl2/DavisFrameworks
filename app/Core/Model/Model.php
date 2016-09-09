@@ -52,11 +52,13 @@ class Model implements InterfaceModel {
   }
 
   public function where($value_one, $value_two) {
+    $query = ' ' . $value_one . '=' . "'" . $value_two . "'";
+    $query2 = ' AND ' . $value_one . '=' . "'" . $value_two . "'";
     if (empty($this->db_query)) {
-      $this->db_query[] = ' ' . $value_one . '=' . "'" . $value_two . "'";
+      $this->db_query[] = $query;
     }
     else {
-      $this->db_query[] = ' AND ' . $value_one . '=' . "'" . $value_two . "'";
+      $this->db_query[] = $query2;
     }
     return $this;
   }

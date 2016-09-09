@@ -20,28 +20,32 @@ class IndexController {
 	}
 
 	public function Index() {
-	  Session::set('user','Luis Solorzano');
-	/*	Views::view('home.home');*/
-		$user = new UserModel();
-    $name = $user->where('name', 'luis')->get();
-    $data = $user->where('user', 'solorzano')->union($name)->get();
-    var_dump($data);
-		/*$data = $user->compare('name','=','luis')->compare('user','=','solorzano')->check();
-		if ($data == TRUE) {
-			echo 'es verdadero<br><br>';
-      echo 'User: ' .Session::get('user');
-		} else {
-			echo 'es falso';
-		}*/
-		//$data = $user->where('name', 'luis')->orwhere('user', 'solorzano')->get();
-	/*	echo $data = $user->count();*/
-		/*foreach($data as $obj){
-			echo $obj['name']. ' '. $obj['user'];
-		}*/
-
-/*		var_dump($data);*/
-
+		Views::view('home.home');
 	}
+
+  public function Index2() {
+    Session::set('user','Luis Solorzano');
+    /*	Views::view('home.home');*/
+    $user = new UserModel();
+    /* $name = $user->where('name', 'luis')->get();
+     $data = $user->where('user', 'solorzano')->union($name)->get();
+     var_dump($data);*/
+    $data = $user->compare('name','=','luis')->and()->compare('user','=','solorzano')->check();
+    if ($data == TRUE) {
+      echo 'es verdadero<br><br>';
+      echo 'User: ' .Session::get('user');
+    } else {
+      echo 'es falso';
+    }
+    //$data = $user->where('name', 'luis')->orwhere('user', 'solorzano')->get();
+    /*	echo $data = $user->count();*/
+    /*foreach($data as $obj){
+      echo $obj['name']. ' '. $obj['user'];
+    }*/
+
+    /*		var_dump($data);*/
+
+  }
 
 	public function Index_Value() {
 		$autor = 'Luis Solorzano';
